@@ -4,7 +4,6 @@
   "private": true,
   "description": "A modern web application that converts text and PDF documents to speech using the Web Speech API",
   "author": "Samuel Justin Ifiezibe sammyjayisthename@gmail.com",
-  "homepage": "https://thetruesammyjay.github.io/text-to-speech-app",
   "repository": {
     "type": "git",
     "url": "https://github.com/thetruesammyjay/text-to-speech-app.git"
