@@ -1,11 +1,22 @@
+/**
+ * src/services/pdfService.js
+ *
+ * This service encapsulates the direct interaction with the PDF.js library
+ * for loading PDF documents and extracting text content.
+ */
+
+// Import PDF.js worker and document for basic setup
+// Ensure pdfjs-dist is installed: npm install pdfjs-dist
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 
 // Set the worker source for PDF.js
-// This path is crucial. For a Create React App setup, you typically need
-// to ensure the pdf.worker.min.js file is accessible in your public directory.
-// A common way is to copy it during build or reference it from a CDN.
-// Using a CDN path here for simplicity, but for production, consider self-hosting.
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+// IMPORTANT: For Create React App, you often need to reference the worker
+// relative to your public path. This approach tries to make it work
+// by referencing it from node_modules, which CRA's webpack setup can handle.
+// If this still fails, you might need to manually copy pdf.worker.min.js
+// from node_modules/pdfjs-dist/build/ to your public/ folder during build.
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
+
 
 const pdfService = {
   /**
