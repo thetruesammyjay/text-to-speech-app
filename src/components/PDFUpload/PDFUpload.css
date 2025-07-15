@@ -1,0 +1,39 @@
+.pdf-upload-container {
+  margin-bottom: var(--spacing-large);
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-medium);
+  box-shadow: var(--box-shadow-light);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.drop-zone {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-large);
+  text-align: center;
+  cursor: pointer;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.drop-zone.drag-over {
+  border-color: var(--primary-color);
+  background-color: rgba(var(--primary-color-rgb), 0.05);
+}
+
+.drop-zone-text {
+  color: var(--secondary-color);
+  font-size: 1rem;
+}
+
+.error-message {
+  color: #dc2626; /* Red color for errors */
+  margin-top: var(--spacing-small);
+  text-align: center;
+  font-size: 0.9rem;
+}

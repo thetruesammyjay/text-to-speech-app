@@ -1,0 +1,44 @@
+/* src/components/common/Header.css */
+
+/* Styling for the main header element */
+.header {
+  background-color: var(--header-background); /* Background color from CSS variables */
+  color: var(--text-color); /* Text color from CSS variables */
+  padding: var(--spacing-medium) var(--spacing-large); /* Padding around the header content */
+  border-bottom: 1px solid var(--border-color); /* Bottom border for separation */
+  box-shadow: var(--box-shadow-light); /* Subtle shadow for depth */
+  transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition for theme changes */
+}
+
+/* Container for header content to control max-width and centering */
+.header-container {
+  max-width: 960px; /* Maximum width for content */
+  margin: 0 auto; /* Center the container horizontally */
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out title and button */
+  align-items: center; /* Vertically align items in the center */
+}
+
+/* Styling for the application title */
+.header-title {
+  font-size: 1.5rem; /* Font size for the title */
+  margin: 0; /* Remove default margin */
+  color: var(--primary-color); /* Primary color for the title */
+}
+
+/* Styling for the theme toggle button */
+.theme-toggle-button {
+  background-color: var(--button-background); /* Button background color from CSS variables */
+  color: var(--button-text); /* Button text color from CSS variables */
+  border: none; /* Remove default button border */
+  padding: 8px 12px; /* Padding inside the button */
+  border-radius: var(--border-radius-small); /* Rounded corners for the button */
+  cursor: pointer; /* Indicate clickable element */
+  font-size: 0.9rem; /* Font size for button text */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the theme toggle button */
+.theme-toggle-button:hover {
+  opacity: 0.9; /* Slightly reduce opacity on hover */
+}

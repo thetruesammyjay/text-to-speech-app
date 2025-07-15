@@ -1,0 +1,69 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the app takes at least the full viewport height */
+  font-family: var(--font-family-base); /* Use global font variable */
+  background-color: var(--background-color); /* Use global background variable */
+  color: var(--text-color); /* Use global text color variable */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+}
+
+.App-content {
+  flex-grow: 1; /* Allows main content to take up available space */
+  padding: var(--spacing-large); /* Consistent padding */
+  max-width: 960px; /* Max width for content readability */
+  margin: 0 auto; /* Center the content */
+  width: 100%; /* Ensure it takes full width up to max-width */
+  display: flex; /* Use flexbox for internal layout of sections */
+  flex-direction: column;
+  gap: var(--spacing-large); /* Space between major sections */
+}
+
+/* Section styling for better visual separation */
+.input-section,
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium); /* Space between components within a section */
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .controls-section {
+    flex-direction: row; /* Layout controls side-by-side on larger screens */
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the top */
+  }
+
+  .controls-section > div {
+    flex: 1; /* Allow control components to take equal space */
+    min-width: 48%; /* Ensure they don't get too small */
+  }
+}
+
+/* Message styling */
+.app-message {
+  padding: var(--spacing-small) var(--spacing-medium);
+  border-radius: var(--border-radius-small);
+  margin-bottom: var(--spacing-medium);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.app-message.success {
+  background-color: #dcfce7; /* Green-ish background */
+  color: #16a34a; /* Darker green text */
+  border: 1px solid #22c55e;
+}
+
+.app-message.error {
+  background-color: #fee2e2; /* Red-ish background */
+  color: #ef4444; /* Darker red text */
+  border: 1px solid #dc2626;
+}
+
+.app-message.info {
+  background-color: #e0f2fe; /* Blue-ish background */
+  color: #0ea5e9; /* Darker blue text */
+  border: 1px solid #38bdf8;
+}

@@ -1,0 +1,41 @@
+:root {
+  /* Color Palette (Light Theme Defaults) */
+  --primary-color: #3b82f6; /* A vibrant blue for primary actions/branding */
+  --primary-color-rgb: 59, 130, 246; /* RGB equivalent for primary color (for rgba usage) */
+  --secondary-color: #64748b; /* A muted grey for secondary text/elements */
+  --background-color: #ffffff; /* Main background for the app */
+  --text-color: #1f2937; /* Default text color */
+  --border-color: #e5e7eb; /* Light border color for separators/outlines */
+  --card-background: #f9fafb; /* Background for card-like components */
+  --button-background: var(--primary-color); /* Default button background */
+  --button-text: #ffffff; /* Default button text color */
+  --input-background: #ffffff; /* Background for input fields */
+  --input-border: #d1d5db; /* Border color for input fields */
+  --header-background: #ffffff; /* Background for the header */
+  --footer-background: #f3f4f6; /* Background for the footer */
+
+  /* Typography */
+  --font-family-base: 'Inter', sans-serif; /* Recommended font, assuming it's loaded */
+  /* If 'Inter' is not loaded, consider a system font stack like:
+     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  */
+
+  /* Spacing */
+  --spacing-extra-small: 4px;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-extra-large: 32px;
+
+  /* Border Radii */
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+  --border-radius-full: 9999px; /* For pill-shaped elements */
+
+  /* Shadows */
+  --box-shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --box-shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --box-shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,63 @@
+.voice-settings-container {
+  margin-bottom: var(--spacing-large);
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-medium);
+  box-shadow: var(--box-shadow-light);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.setting-item label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.voice-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius-small);
+  background-color: var(--input-background);
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.voice-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.voice-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.preview-button {
+  background-color: var(--primary-color);
+  color: var(--button-text);
+  border: none;
+  padding: 8px 15px;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.preview-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.preview-button:disabled {
+  background-color: var(--secondary-color);
+  cursor: not-allowed;
+  opacity: 0.6;
+}

@@ -1,0 +1,19 @@
+[data-theme="dark"] {
+  /* Backgrounds */
+  --background-color: #1f2937; /* Darker main background */
+  --card-background: #2d3748; /* Darker background for cards */
+  --header-background: #2d3748; /* Darker header background */
+  --footer-background: #111827; /* Even darker footer background */
+
+  /* Text Colors */
+  --text-color: #f9fafb; /* Light text color for contrast */
+
+  /* Borders & Inputs */
+  --border-color: #374151; /* Darker border color */
+  --input-background: #2d3748; /* Darker input background */
+  --input-border: #4b5563; /* Darker input border */
+
+  /* Buttons */
+  --button-background: #4f46e5; /* A slightly different, vibrant primary for dark mode buttons */
+  /* --button-text remains #ffffff */
+}

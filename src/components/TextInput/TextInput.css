@@ -1,0 +1,40 @@
+/* src/components/TextInput/TextInput.css */
+
+.text-input-container {
+  margin-bottom: var(--spacing-large);
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-medium);
+  padding: var(--spacing-medium);
+  box-shadow: var(--box-shadow-light);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.text-input-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: var(--spacing-small);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius-small);
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.text-input-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.text-input-info {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-medium);
+  margin-top: var(--spacing-small);
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+}

@@ -1,0 +1,46 @@
+/* src/styles/globals.css */
+
+/*
+ * Global CSS styles and resets for the application.
+ * This file sets up basic box-sizing, font rendering, and default element styles.
+ */
+
+/* Universal box-sizing for consistent layout */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure html, body, and root div take full height */
+html, body, #root {
+  height: 100%;
+}
+
+/* Base body styles: line height, font smoothing, and theme-dependent colors */
+body {
+  line-height: 1.6; /* Standard line height for readability */
+  -webkit-font-smoothing: antialiased; /* Improve font rendering on macOS */
+  font-family: var(--font-family-base); /* Base font family from variables */
+  color: var(--text-color); /* Default text color from variables */
+  background-color: var(--background-color); /* Default background color from variables */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme changes */
+}
+
+/* Responsive images, videos, canvas, and SVGs */
+img, picture, video, canvas, svg {
+  display: block; /* Remove extra space below inline elements */
+  max-width: 100%; /* Ensure elements don't overflow their containers */
+}
+
+/* Inherit font styles for form elements */
+input, button, textarea, select {
+  font: inherit; /* Make form elements inherit font from their parent */
+}
+
+/* Ensure long words wrap to the next line */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
