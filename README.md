@@ -18,72 +18,21 @@ A modern web application that converts text and PDF documents to speech using th
 ```
 text-to-speech-app/
 ├── public/
-│   ├── index.html
-│   ├── favicon.ico
-│   ├── manifest.json
-│   └── icons/
-│       ├── icon-192.png
-│       └── icon-512.png
 ├── src/
 │   ├── components/
-│   │   ├── common/
-│   │   │   ├── Header.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   └── LoadingSpinner.jsx
-│   │   ├── TextInput/
-│   │   │   ├── TextInput.jsx
-│   │   │   └── TextInput.css
-│   │   ├── PDFUpload/
-│   │   │   ├── PDFUpload.jsx
-│   │   │   └── PDFUpload.css
-│   │   ├── SpeechControls/
-│   │   │   ├── SpeechControls.jsx
-│   │   │   └── SpeechControls.css
-│   │   ├── VoiceSettings/
-│   │   │   ├── VoiceSettings.jsx
-│   │   │   └── VoiceSettings.css
-│   │   └── ProgressBar/
-│   │       ├── ProgressBar.jsx
-│   │       └── ProgressBar.css
 │   ├── hooks/
-│   │   ├── useSpeechSynthesis.js
-│   │   ├── usePDFReader.js
-│   │   └── useLocalStorage.js
 │   ├── utils/
-│   │   ├── speechUtils.js
-│   │   ├── pdfUtils.js
-│   │   ├── textUtils.js
-│   │   └── constants.js
 │   ├── services/
-│   │   ├── speechService.js
-│   │   └── pdfService.js
 │   ├── styles/
-│   │   ├── globals.css
-│   │   ├── variables.css
-│   │   └── themes.css
 │   ├── App.jsx
 │   ├── App.css
 │   ├── index.js
 │   └── index.css
 ├── tests/
-│   ├── components/
-│   │   ├── TextInput.test.js
-│   │   ├── PDFUpload.test.js
-│   │   └── SpeechControls.test.js
-│   ├── hooks/
-│   │   ├── useSpeechSynthesis.test.js
-│   │   └── usePDFReader.test.js
-│   └── utils/
-│       ├── speechUtils.test.js
-│       └── pdfUtils.test.js
 ├── docs/
-│   ├── API.md
-│   ├── CONTRIBUTING.md
-│   └── DEPLOYMENT.md
 ├── .env.example
 ├── .gitignore
 ├── package.json
-├── package-lock.json
 ├── README.md
 └── LICENSE
 ```
