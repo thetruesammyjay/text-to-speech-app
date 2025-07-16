@@ -69,7 +69,8 @@ export const chunkText = (text, maxChunkLength = 200) => {
     let breakPoint = -1;
 
     // Look for sentence end within the maxChunkLength range
-    const sentenceEndMatch = currentText.substring(0, maxChunkLength).match(/[\.\?\!]\s+["']?$/);
+    // Fixed: Removed unnecessary escape characters from regex (already done in previous turn, confirming)
+    const sentenceEndMatch = currentText.substring(0, maxChunkLength).match(/[.?!]\s+["']?$/);
     if (sentenceEndMatch) {
       breakPoint = currentText.indexOf(sentenceEndMatch[0], sentenceEndMatch.index) + sentenceEndMatch[0].length;
     }
