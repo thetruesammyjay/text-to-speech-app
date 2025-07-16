@@ -14,6 +14,6 @@
   --input-border: #4b5563; /* Darker input border */
 
   /* Buttons */
-  --button-background: #4f46e5; /* A slightly different, vibrant primary for dark mode buttons */
+  --button-background: var(--primary-color); /* Use the new primary blue for dark mode buttons */
   /* --button-text remains #ffffff */
 }
