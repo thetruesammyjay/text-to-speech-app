@@ -1,9 +1,10 @@
 import React from 'react';
 import './SpeechControls.css'; // Import the CSS for styling
+import LoadingSpinner from '../common/LoadingSpinner'; // Import LoadingSpinner
 
 /**
  * SpeechControls Component
- * Provides play, pause, stop, speed, pitch, and volume controls for speech.
+ * Provides play, pause, stop, speed, pitch, volume, and download controls for speech.
  *
  * @param {object} props - Component props.
  * @param {boolean} props.isPlaying - Indicates if speech is currently playing.
@@ -17,6 +18,8 @@ import './SpeechControls.css'; // Import the CSS for styling
  * @param {function} props.onPitchChange - Callback for pitch change.
  * @param {number} props.volume - Current speech volume.
  * @param {function} props.onVolumeChange - Callback for volume change.
+ * @param {function} props.onDownloadAudio - Callback for downloading audio.
+ * @param {boolean} props.isDownloadingAudio - Indicates if audio download is in progress.
  */
 const SpeechControls = ({
   isPlaying,
@@ -30,6 +33,8 @@ const SpeechControls = ({
   onPitchChange,
   volume,
   onVolumeChange,
+  onDownloadAudio,
+  isDownloadingAudio, // New prop for download loading state
 }) => {
   return (
     <div className="speech-controls-container">
@@ -37,23 +42,30 @@ const SpeechControls = ({
         <button
           className="control-button play-button"
           onClick={onPlay}
-          disabled={isPlaying && !isPaused}
+          disabled={(isPlaying && !isPaused) || isDownloadingAudio}
         >
           {isPlaying && !isPaused ? 'Playing...' : isPaused ? 'Resume' : 'Play'}
         </button>
         <button
           className="control-button pause-button"
           onClick={onPause}
-          disabled={!isPlaying || isPaused}
+          disabled={!isPlaying || isPaused || isDownloadingAudio}
         >
           Pause
         </button>
         <button
           className="control-button stop-button"
           onClick={onStop}
-          disabled={!isPlaying}
+          disabled={!isPlaying || isDownloadingAudio}
         >
           Stop
+        </button>
+        <button
+          className="control-button download-button"
+          onClick={onDownloadAudio}
+          disabled={isDownloadingAudio} // Disable during download
+        >
+          {isDownloadingAudio ? <LoadingSpinner size="small" /> : 'Download Audio'}
         </button>
       </div>
 
@@ -69,6 +81,7 @@ const SpeechControls = ({
             value={speed}
             onChange={(e) => onSpeedChange(parseFloat(e.target.value))}
             className="slider"
+            disabled={isDownloadingAudio}
           />
         </div>
 
@@ -83,6 +96,7 @@ const SpeechControls = ({
             value={pitch}
             onChange={(e) => onPitchChange(parseFloat(e.target.value))}
             className="slider"
+            disabled={isDownloadingAudio}
           />
         </div>
 
@@ -97,6 +111,7 @@ const SpeechControls = ({
             value={volume}
             onChange={(e) => onVolumeChange(parseFloat(e.target.value))}
             className="slider"
+            disabled={isDownloadingAudio}
           />
         </div>
       </div>
