@@ -1,14 +1,15 @@
 :root {
   /* Color Palette (Light Theme Defaults) */
-  --primary-color: #3b82f6; /* A vibrant blue for primary actions/branding */
-  --primary-color-rgb: 59, 130, 246; /* RGB equivalent for primary color (for rgba usage) */
-  --secondary-color: #64748b; /* A muted grey for secondary text/elements */
-  --background-color: #ffffff; /* Main background for the app */
-  --text-color: #1f2937; /* Default text color */
+  --primary-color: #01015C; /* New Blue */
+  --primary-color-rgb: 1, 1, 92; /* RGB equivalent for primary color */
+  --secondary-color: #ffa200; /* New Orange (used as a secondary/accent) */
+  --secondary-color-rgb: 255, 162, 0; /* RGB equivalent for secondary color */
+  --background-color: #ffffff; /* New White - Main background for the app */
+  --text-color: #1f2937; /* Dark text color for contrast on white background */
   --border-color: #e5e7eb; /* Light border color for separators/outlines */
   --card-background: #f9fafb; /* Background for card-like components */
   --button-background: var(--primary-color); /* Default button background */
-  --button-text: #ffffff; /* Default button text color */
+  --button-text: #ffffff; /* Default button text color (white) */
   --input-background: #ffffff; /* Background for input fields */
   --input-border: #d1d5db; /* Border color for input fields */
   --header-background: #ffffff; /* Background for the header */
@@ -16,10 +17,6 @@
 
   /* Typography */
   --font-family-base: 'Inter', sans-serif; /* Recommended font, assuming it's loaded */
-  /* If 'Inter' is not loaded, consider a system font stack like:
-     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  */
 
   /* Spacing */
   --spacing-extra-small: 4px;
