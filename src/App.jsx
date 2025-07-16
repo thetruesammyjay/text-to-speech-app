@@ -7,7 +7,6 @@ import './styles/themes.css'; // Theme styles
 // Import common components
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
-import LoadingSpinner from './components/common/LoadingSpinner';
 
 // Import feature components
 import TextInput from './components/TextInput/TextInput';
@@ -22,11 +21,12 @@ import usePDFReader from './hooks/usePDFReader';
 import useLocalStorage from './hooks/useLocalStorage';
 
 // Import utilities and services
-import { countCharacters, countWords, chunkText } from './utils/textUtils';
+import { countCharacters } from './utils/textUtils';
 import { validatePdfFile } from './utils/pdfUtils';
-import { MAX_FILE_SIZE, DEFAULT_SPEECH_RATE, DEFAULT_SPEECH_PITCH, DEFAULT_SPEECH_VOLUME } from './utils/constants';
+import { DEFAULT_SPEECH_RATE, DEFAULT_SPEECH_PITCH, DEFAULT_SPEECH_VOLUME } from './utils/constants';
 import speechService from './services/speechService';
-import pdfService from './services/pdfService';
+import backendTtsService from './services/backendTtsService'; // Backend TTS service
+import { saveAs } from 'file-saver'; // <-- FIX: Import saveAs here
 
 /**
  * App Component
@@ -39,7 +39,9 @@ function App() {
   // State for tracking if the source is PDF or text input
   const [isPdfSource, setIsPdfSource] = useState(false);
   // State for displaying messages to the user (e.g., errors, info)
-  const [appMessage, setAppMessage] = useState({ type: '', text: '' }); // { type: 'success'|'error'|'info', text: 'message' }
+  const [appMessage, setAppMessage] = useState({ type: '', text: '' }); 
+  // State to track if audio download is in progress
+  const [isDownloadingAudio, setIsDownloadingAudio] = useState(false);
 
   // Integrate useSpeechSynthesis hook for speech logic
   const {
@@ -86,11 +88,9 @@ function App() {
   useEffect(() => {
     speechService.setCallbacks({
       onStart: () => {
-        // useSpeechSynthesis already handles isPlaying state, but this is here for completeness
         setAppMessage({ type: 'info', text: 'Speech started.' });
       },
       onEnd: () => {
-        // useSpeechSynthesis already handles isPlaying/isPaused state
         setAppMessage({ type: 'success', text: 'Speech ended.' });
       },
       onPause: () => {
@@ -100,10 +100,7 @@ function App() {
         setAppMessage({ type: 'info', text: 'Speech resumed.' });
       },
       onBoundary: (event) => {
-        // The useSpeechSynthesis hook already updates charIndex,
-        // so this callback primarily serves for potential additional UI updates
-        // or logging if needed.
-        // console.log('Boundary:', event.charIndex, event.name);
+        // This callback is for progress tracking, no console.log needed here.
       },
       onError: (error) => {
         setAppMessage({ type: 'error', text: `Speech error: ${error.message || error}` });
@@ -136,7 +133,6 @@ function App() {
       // pdfText state will be updated by the hook, triggering the useEffect above
     } catch (error) {
       setAppMessage({ type: 'error', text: error.message || 'Failed to process PDF.' });
-      console.error("PDF processing failed:", error);
     }
   }, [extractTextFromPdf, clearPdfData]);
 
@@ -186,6 +182,45 @@ function App() {
     }
   }, [selectedVoice]);
 
+  /**
+   * Handler for the "Download Audio" button.
+   * Calls a backend service to generate and download audio.
+   */
+  const handleDownloadAudio = useCallback(async () => {
+    if (!textToSpeak.trim()) {
+      setAppMessage({ type: 'error', text: 'Please enter some text or upload a PDF to download audio.' });
+      return;
+    }
+    if (!selectedVoice) {
+      setAppMessage({ type: 'error', text: 'No voice selected. Please choose a voice for audio download.' });
+      return;
+    }
+
+    setIsDownloadingAudio(true);
+    setAppMessage({ type: 'info', text: 'Generating audio for download...' });
+
+    try {
+      // Call the backend TTS service
+      const audioBlob = await backendTtsService.synthesizeAudio(
+        textToSpeak,
+        selectedVoice.name, // Send voice name to backend
+        rate,
+        pitch,
+        volume
+      );
+
+      // Use file-saver to save the blob as a file
+      const fileName = `speech-${Date.now()}.mp3`; // Or .wav, depending on backend output
+      saveAs(audioBlob, fileName);
+
+      setAppMessage({ type: 'success', text: `Audio downloaded as ${fileName}` });
+    } catch (error) {
+      setAppMessage({ type: 'error', text: `Failed to download audio: ${error.message || 'Unknown error'}` });
+    } finally {
+      setIsDownloadingAudio(false);
+    }
+  }, [textToSpeak, selectedVoice, rate, pitch, volume]);
+
   // Calculate progress for ProgressBar
   const totalTextLength = countCharacters(textToSpeak);
   const progress = totalTextLength > 0 ? (charIndex / totalTextLength) * 100 : 0;
@@ -231,6 +266,8 @@ function App() {
             onPitchChange={setPitch}
             volume={volume}
             onVolumeChange={setVolume}
+            onDownloadAudio={handleDownloadAudio}
+            isDownloadingAudio={isDownloadingAudio}
           />
           <VoiceSettings
             voices={voices}
