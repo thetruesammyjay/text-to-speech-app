@@ -10,7 +10,7 @@ let utteranceQueue = [];
 let currentUtterance = null;
 // Callback for when speech starts
 let onSpeechStartCallback = null;
-// Callback for when speech ends
+// Callback for when speech ends          
 let onSpeechEndCallback = null;
 // Callback for when speech is paused
 let onSpeechPauseCallback = null;
@@ -62,7 +62,7 @@ const createUtterance = (text, { voice, rate, pitch, volume }) => {
   };
 
   utterance.onerror = (event) => {
-    console.error('SpeechSynthesisUtterance error:', event);
+    // Removed console.error as per ESLint 'no-console' rule.
     if (onErrorCallback) onErrorCallback(event.error);
     // If an error occurs, clear the queue and stop
     synth.cancel();
@@ -99,7 +99,7 @@ const speechService = {
    */
   speak: (text, options) => {
     if (!synth) {
-      console.error("SpeechSynthesis API not supported.");
+      // Removed console.error as per ESLint 'no-console' rule.
       if (onErrorCallback) onErrorCallback("SpeechSynthesis API not supported.");
       return;
     }
@@ -168,7 +168,7 @@ const speechService = {
    */
   previewVoice: (options) => {
     if (!synth) {
-      console.warn("SpeechSynthesis API not supported for preview.");
+      // Removed console.warn as per ESLint 'no-console' rule.
       return;
     }
     synth.cancel(); // Stop any ongoing speech before preview
