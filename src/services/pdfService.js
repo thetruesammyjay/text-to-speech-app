@@ -10,12 +10,10 @@
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 
 // Set the worker source for PDF.js
-// IMPORTANT: For Create React App, you often need to reference the worker
-// relative to your public path. This approach tries to make it work
-// by referencing it from node_modules, which CRA's webpack setup can handle.
-// If this still fails, you might need to manually copy pdf.worker.min.js
-// from node_modules/pdfjs-dist/build/ to your public/ folder during build.
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
+// IMPORTANT: This path assumes you have copied 'pdf.worker.min.js'
+// from 'node_modules/pdfjs-dist/build/' into your 'public/' directory.
+// Create React App will serve files from 'public/' directly.
+pdfjsLib.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL || ''}/pdf.worker.min.js`;
 
 
 const pdfService = {
@@ -59,7 +57,7 @@ const pdfService = {
 
       return extractedText.trim(); // Trim any leading/trailing whitespace
     } catch (error) {
-      console.error("Error in pdfService.extractText:", error);
+      // Removed console.error as per ESLint 'no-console' rule.
       throw new Error(`Failed to extract text from PDF: ${error.message || 'Unknown error'}`);
     }
   },
@@ -83,7 +81,7 @@ const pdfService = {
       const pdfDocument = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
       return pdfDocument.numPages;
     } catch (error) {
-      console.error("Error in pdfService.getPageCount:", error);
+      // Removed console.error as per ESLint 'no-console' rule.
       throw new Error(`Failed to get PDF page count: ${error.message || 'Unknown error'}`);
     }
   },
